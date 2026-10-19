@@ -1,6 +1,8 @@
 # Map exercises
 
-With this exercise package, you will learn to utilize the Map data structure in your own applications. To support the exercises, we recommend reading the pages [Using Maps to Store Key Value Pairs](https://dev.java/learn/api/collections-framework/maps/) and [Managing the Content of a Map](https://dev.java/learn/api/collections-framework/working-with-keys-and-values/) from the Oracle's [dev.java](https://dev.java/) tutorial.
+![Map data structure: keys and their values, for example postal codes and post offices](img/chapters/map.svg)
+
+With these exercises, you learn to use the Map data structure in your own applications. We recommend reading the pages [Using Maps to Store Key Value Pairs](https://dev.java/learn/api/collections-framework/maps/) and [Managing the Content of a Map](https://dev.java/learn/api/collections-framework/working-with-keys-and-values/) of Oracle's [dev.java](https://dev.java/) tutorial.
 
 > *"A hashmap is a structure able to store key-value pairs. The value is any object your application needs to handle, and a key is something that can represent this object.*
 >
@@ -8,64 +10,64 @@ With this exercise package, you will learn to utilize the Map data structure in 
 >
 > Using Maps to Store Key Value Pairs. Oracle. https://dev.java/learn/api/collections-framework/maps/
 
-The task consists of several parts, each of which will be evaluated separately using pre-written tests.
-
 ## Starting the exercise
 
-First fork this repository into your own GitHub repository with GitHub's **Fork** button. The exercise is done in your own fork, so only then clone your fork to your computer (the address contains your own GitHub username):
+First fork this repository into your own GitHub repository with GitHub's **Fork** button, and only then clone your fork to your computer:
 
 ```sh
-git clone https://github.com/<your-github-username>/<repository-name>.git
+git clone https://github.com/<your-github-username>/3-map-exercises.git
 ```
 
-After cloning the project to your local machine, open it in your code editor.
+Open the cloned project in your code editor.
 
-## Submitting solutions
+## Testing
 
-Solutions to this exercise are not graded by any GitHub Actions workflow (YAML), and `git push` does not start any grading. Grading is done by the course system: submit your solution on the exercise page in the course system, where your code is compiled and the exercise's JUnit tests are run.
-
-Finally, push everything to your public GitHub repository and press the **Lähetä tarkistettavaksi** (submit for checking) button on the exercise page. The course system's bot then fetches your code from your repository and checks it with the same tests.
-
-💡 *You can submit your solution as many times as needed until the chapter deadline. Your best result is kept.*
-
-
-## Exercise 1: [MapBasics.java](./src/main/java/part01/MapBasics.java) *(basics, 40 %)*
-
-In this task, we will practice creating a new `Map` object and performing the most common operations for adding, retrieving, modifying, and removing data.
-
-The Java class to be coded in this task, [MapBasics](./src/main/java/part01/MapBasics.java), consists of predefined methods with Javadoc comments explaining how each method should function. **Your task is to read the comments and implement the method content to match the method name and description.**
-
-You can test your code using your own `main` method, or you can utilize the provided JUnit unit tests for the task, which can be found in the [MapBasicsTest](./src/test/java/part01/MapBasicsTest.java) class. 
-You can run the tests either using your code editor's testing tool ([VS Code](https://code.visualstudio.com/docs/java/java-testing), [Eclipse](https://www.vogella.com/tutorials/JUnitEclipse/article.html)) or using the [Gradle tool](https://docs.gradle.org/current/userguide/java_testing.html):
+The parts of the exercise have ready-made [JUnit](https://junit.org/) unit tests in the [src/test/java](./src/test/java/) directory. Each part tells which test class grades it. You can run the tests with your code editor's testing tool ([VS Code](https://code.visualstudio.com/docs/java/java-testing), [Eclipse](https://www.vogella.com/tutorials/JUnitEclipse/article.html)) or with [Gradle](https://docs.gradle.org/current/userguide/java_testing.html), for example:
 
 ```
 ./gradlew test --tests MapBasicsTest        # unix
 .\gradlew.bat test --tests MapBasicsTest    # windows
 ```
 
-💡 *If the tests do not pass, try running the command again with the `--info` argument at the end. This will give you more detailed information about what went wrong in the test. Alternatively, you can run the tests using the testing tool in your code editor ([VS Code](https://code.visualstudio.com/docs/java/java-testing), [Eclipse](https://www.vogella.com/tutorials/JUnitEclipse/article.html)), which typically displays errors clearly.*
+Add `--info` to the end of the command for more details about failing tests. You do not need to study how the tests are implemented, and you can also try your solution with your own `main` method. You may write more tests of your own, but do not change or remove the given tests.
 
-💡 *You do not need to familiarize yourself with the technical implementation of the actual test. At this stage, it is sufficient to run the tests and review any error messages they may produce.*
+Do not change the names, parameters or return types of the given classes, methods and constructors, because the tests will then not compile. You get the original version of a file back with `git restore <path to file>` or with the **Palauta lähtökoodi** (restore starter code) function of the course system.
 
-🚀 *Note that many methods in this class are not dependent on the type of Map data structure used. For example, the `countEntries` method could work equally well with `<String, String>` as with `<String, Integer>` types of keys and values. In a real program, you would likely use generic types, such as `Map<K, V>`. In this task, you do not need to specifically study generic types, but you can explore the topic independently and implement the methods generically if you wish. For more information, see the tutorial: https://dev.java/learn/generics/.*
+## Submitting and points
 
-## Exercise 2: [MapExperts.java](./src/main/java/part02/MapExperts.java) *(applying, 30 %)*
+Each part of the exercise has its own page in the course system (https://jtjuslin.kapsi.fi/java), and its code fields contain the part's starter code. Copy your solution into the code fields or write it there directly. **Testaa ilman palautusta** (test without submitting) runs the part's tests without saving points, and **Lähetä** (submit) submits your solution. Each test class is accepted only if all of its tests pass, and the points are divided according to the accepted test classes.
 
-In this task, we continue with exercises that apply `Map` operations. The tasks are more challenging in nature and require broader problem-solving skills beyond the use of individual methods.
+**Points in two stages**
 
-As in the previous task, [MapExperts.java](./src/main/java/part02/MapExperts.java) also consists of predefined methods with Javadoc comments explaining how each method should function. **Your task is to read the comments and implement the method content to match the method name and description.**
+1. When your solution passes in the course system, you get **half of the points** for the part.
+2. Finally, push everything to your public GitHub repository. Then press the **Lähetä tarkistettavaksi** (submit for checking) button on the part's page. When the tests pass, you get **full points** for the part. The repository may remain public.
 
-As in the previous task, you can test your code using your own `main` method or the provided JUnit unit tests. The tests can be found in the [MapExpertsTest](./src/test/java/part02/MapExpertsTest.java) class. You can run the tests either using your code editor's testing tool ([VS Code](https://code.visualstudio.com/docs/java/java-testing), [Eclipse](https://www.vogella.com/tutorials/JUnitEclipse/article.html)) or using the [Gradle tool](https://docs.gradle.org/current/userguide/java_testing.html):
-
-```
-./gradlew test --tests MapExpertsTest        # unix
-.\gradlew.bat test --tests MapExpertsTest    # windows
-```
+There is no grading YAML workflow (GitHub Actions) on GitHub, and `git push` does not start any grading. When you press **Lähetä tarkistettavaksi**, the course system's bot fetches your code from your repository and checks it with the same tests. Both stages must be completed before the chapter deadline. You can submit as many times as you need, and your best result is kept.
 
 
-## Exercise 3: [PostalCodesMain.java](./src/main/java/part03/PostalCodesMain.java) *(applying, 15 % + 15 %)*
+## Exercise 1: MapBasics *(basics, 40 %)*
 
-Computer programs often use the JSON file format for handling structured data. [JSON (JavaScript Object Notation)](https://www.json.org/) is a lightweight and common way to store and transfer information between programs. JSON-formatted data can be used in many different applications, such as web servers, mobile applications, and working with databases. JSON-formatted data might look like this, for example:
+In this exercise, you practice creating a new `Map` object and the most common operations for adding, getting, changing and removing data.
+
+The javadoc comments of the [MapBasics](./src/main/java/part01/MapBasics.java) methods tell how each method should work. **Read the comments and implement each method to match its name and description.**
+
+Graded with the test class [MapBasicsTest](./src/test/java/part01/MapBasicsTest.java).
+
+🚀 *Many of these methods do not depend on the types of the map's keys and values. For example, `countEntries` would work just as well with a `<String, String>` map as with a `<String, Integer>` map. A real program would probably use generic types, such as `Map<K, V>`. You do not need to study generics yet, but you may implement the methods as generic ones: https://dev.java/learn/generics/.*
+
+
+## Exercise 2: MapExperts *(applying, 30 %)*
+
+This exercise continues with `Map` operations as applied tasks. They are more challenging and require broader problem solving than using a single method.
+
+Implement the methods of the [MapExperts](./src/main/java/part02/MapExperts.java) class according to their javadoc comments: counting letter occurrences, inverting a map and turning a list of [Course](./src/main/java/part02/Course.java) objects into a map. `Course` is a ready-made record class.
+
+Graded with the test class [MapExpertsTest](./src/test/java/part02/MapExpertsTest.java).
+
+
+## Exercise 3: PostalCodesMain *(applying, 15 % + 15 %)*
+
+[JSON (JavaScript Object Notation)](https://www.json.org/) is a lightweight and common way to store and transfer structured data between programs. JSON data can look like this, for example:
 
 ```json
 {
@@ -77,112 +79,79 @@ Computer programs often use the JSON file format for handling structured data. [
 }
 ```
 
-In a Java program, the Map data structure is excellent for handling the key-value pairs shown above. In this task, we will focus on processing postal code data stored in a [JSON file named *postcode_map_light.json*](./data/postcode_map_light.json).
+A Map is an excellent data structure for such key-value pairs. In this exercise, you handle postal code data stored in the JSON file [postcode_map_light.json](./data/postcode_map_light.json). Reading the file is already implemented in the [PostalCodesReader](./src/main/java/part03/PostalCodesReader.java) class, which uses Google's [GSON library](https://github.com/google/gson). You do not need to study GSON.
 
-💡 *To read the JSON file in a Java program, we will use Google's GSON library in this task. [GSON](https://github.com/google/gson) allows converting JSON data to Java objects and vice versa. The handling of the JSON file has been pre-implemented in the [PostalCodesReader](./src/main/java/part03/PostalCodesReader.java) class. You do not need to delve into the details of GSON or use it yourself.*
-
-🚀 *GSON is not part of the Java standard library; it has been added to this project using the Gradle tool. Examine the [`build.gradle`](./build.gradle) file to find out how and where GSON is specified.*
+🚀 *GSON is not part of Java's standard library but has been added to the project with Gradle. Can you find out from the [build.gradle](./build.gradle) file how and where GSON is defined?*
 
 ### User interface
 
-Unlike the previous tasks, in this task you are free to implement the solution in the way you see fit and create the classes and methods you deem necessary. However, your program must work in such a way that it starts from the `PostalCodesMain` class's main method and asks the user only one question. The result must also be printed in the format specified in the task description.
-
-Therefore, implement the logic in the [PostalCodesMain](./src/main/java/part03/PostalCodesMain.java) class, which utilizes the `readPostalCodes` method from the [PostalCodesReader](./src/main/java/part03/PostalCodesReader.java) class. Depending on the situation, your program should print either the name of the post office corresponding to the postal code entered by the user or the postal codes corresponding to the name.
+You may implement the solution as you see best and create the classes and methods you need. However, the program must start from the `main` method of the [PostalCodesMain](./src/main/java/part03/PostalCodesMain.java) class, ask the user for only one input, print the answer in the format shown below and exit. Get the postal codes with the `readPostalCodes` method of `PostalCodesReader`.
 
 **Postal code (15 %)**
 
-The user might enter a number, in which case the program will search for the corresponding post office name:
+If the user enters a postal code, the program prints the corresponding post office:
 
 ```
 Input postal code or district (e.g., 00100 or Helsinki): 00100
 
 Post office: HELSINKI
-
-[ end of execution ]
 ```
 
-In the example above, the user entered the input `00100` and the program printed the name `HELSINKI`. If the postal code is not found in the data, print the text "Postal code not found."
+If the postal code is not found, print for example "Post office not found."
 
-💡 *Note that due to automatic evaluation, the program should only ask for one input, print the response, and then terminate.*
+**Post office name (15 %)**
 
-**Name of the post office (15 %)**
-
-If the user enters the name of a post office, the program should print all postal codes that belong to that post office:
+If the user enters the name of a post office, the program prints all of its postal codes:
 
 ```
 Input postal code or district (e.g., 00100 or Helsinki): Porvoo
 
 Postal codes: 06100, 06101, 06150, 06151, 06200, 06400, 06401, 06450, 06500
-
-[ end of execution ]
 ```
 
-In this example, the user entered the text `Porvoo` and the program printed the postal codes for Porvoo. If no postal codes are found for the given name, print "Postal codes not found.". Your program should find the postal codes regardless of the case of the input name.
+The case of the name does not matter, and partial matches are not shown. The postal codes must be **in ascending order, separated by a comma and a space**, so first collect them into a list, for example, and [sort](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Collections.html#sort(java.util.List)) it before printing. If no postal codes are found for the name, print for example "Postal codes not found."
 
-In the output, **the postal codes must be in ascending order, separated by commas**, so first collect the postal codes in a list, which you then [sort](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Collections.html#sort(java.util.List)) before printing.
+### Running and grading the program
 
-### Running the program
-
-You can run the [PostalCodesMain](./src/main/java/part03/PostalCodesMain.java) main program either using the Run button in your code editor's interface or with the Gradle tool from the command line:
+You can run the program with the Run button of your code editor or with Gradle:
 
 ```
 ./gradlew --quiet --console plain run         # unix
 .\gradlew.bat --quiet --console plain run     # windows
-
-# -q, --quiet         Log errors only.
-# --console [plain]   Specifies which type of console output to generate.
-#                     Values are 'plain', 'auto' (default), 'rich' or 'verbose'.
 ```
 
-💡 *The first run might be very slow, but [subsequent runs will be faster thanks to Gradle's build cache](https://docs.gradle.org/current/userguide/build_cache.html). Alternatively, you can run your program using the "run" button in your code editor.*
+The first run may be slow, but [Gradle's cache speeds up the following ones](https://docs.gradle.org/current/userguide/build_cache.html). Gradle knows to start `PostalCodesMain` because it is defined as the main class in [build.gradle](./build.gradle).
 
-🚀 *Gradle can execute the main method from the correct Java class using the run command because `PostalCodesMain` is specified as the main program in the [`build.gradle`](./build.gradle) file.*
+The course system runs your program with different inputs using two test classes. They are not in this repository, so try the program yourself with the examples above. The ready-made [PostalCodesReaderTest](./src/test/java/part03/PostalCodesReaderTest.java) only tests the given file reader.
 
-### Testing the exercise
+* `PostalCodeLookupTest` *(postal code, 15 %)*: with inputs such as `19230`, `00100`, `99999` and `71820`, the output must contain the corresponding post office (ONKINIEMI, HELSINKI, KORVATUNTURI and PÖLJÄ). A partial postal code, such as `001`, must not produce a result.
+* `PostalDistrictLookupTest` *(post office name, 15 %)*: with inputs such as `tammisaari`, `TAMMISAARI`, `Porvoo` and `kauniainen`, the output must contain the post office's postal codes in ascending order. A partial name, such as `Porv`, must not produce a result.
 
-These postal code tasks are tested through the user interface, so unlike previous tasks, there are no pre-written unit tests for them. Therefore, you need to test the functionality of your solution yourself by running the program's `main` method and checking its output. The provided [PostalCodesReaderTest](./src/test/java/part03/PostalCodesReaderTest.java) class only verifies that the [pre-written code for reading postal codes from files](./src/main/java/part03/PostalCodesReader.java) works correctly, but it does not test the main program you implemented.
+💡 *The test picks all five-digit numbers from the output, so do not print other five-digit numbers than the postal codes found. The example in the input prompt "(e.g., 00100 or Helsinki)" is ignored.*
 
-## Bonus exercise 4: [MorseCode.java](./src/main/java/part04/MorseCode.java) *(applying, 0 %)*
 
-MorseCode-luokkaan on toteutettava kaksi metodia: `morseToText` ja `textToMorse`. Nämä metodit muuntavat merkkijonoja morsekoodista "normaaliksi" tekstiksi ja päinvastoin:
+## Bonus exercise 4: MorseCode *(applying, 0 %)*
 
-This is a bonus task that is not included in the task evaluation. You can choose to implement the [MorseCode-luokan](./src/main/java/part04/MorseCode.java) class and the related [MorseApp](./src/main/java/part04/MorseApp.java) class, or you can skip this task.
-
-The MorseCode class should implement two methods: `morseToText` and `textToMorse`. These methods convert strings from Morse code to "normal" text and vice versa:
+This optional bonus exercise does not affect the points. Implement the methods `textToMorse` and `morseToText` of the [MorseCode](./src/main/java/part04/MorseCode.java) class, which convert text to Morse code and back:
 
 ```
 hello world
 .... . .-.. .-.. ---   .-- --- .-. .-.. -..
 ```
 
-Lisätietoja morsekoodista löytyy esimerkiksi Wikipediasta: [https://en.wikipedia.org/wiki/Morse_code](https://en.wikipedia.org/wiki/Morse_code).
+More information about Morse code is available on Wikipedia, for example: https://en.wikipedia.org/wiki/Morse_code. The [MorseApp](./src/main/java/part04/MorseApp.java) class is not checked.
 
-MorseCode-luokalle on valmiit testit, jotka löytyvät [MorseCodeTest](./src/test/java/part04/MorseCodeTest.java)-luokasta. Voit suorittaa testit koodieditorisi testaustyökalulla ([VS Code](https://code.visualstudio.com/docs/java/java-testing), [Eclipse](https://www.vogella.com/tutorials/JUnitEclipse/article.html)) tai [Gradle-automaatiotyökalulla](https://docs.gradle.org/current/userguide/java_testing.html):
+Tried with the test class [MorseCodeTest](./src/test/java/part04/MorseCodeTest.java).
 
-More information about Morse code can be found, for example, on Wikipedia: <https://en.wikipedia.org/wiki/Morse_code>.
-
-There are ready-made tests for the MorseCode class, which can be found in the [MorseCodeTest](./src/test/java/part04/MorseCodeTest.java) class. You can run the tests either using your code editor's testing tool ([VS Code](https://code.visualstudio.com/docs/java/java-testing), [Eclipse](https://www.vogella.com/tutorials/JUnitEclipse/article.html)) or using the [Gradle tool](https://docs.gradle.org/current/userguide/java_testing.html):
-
-
-```
-./gradlew test --tests MorseCodeTest        # unix
-.\gradlew.bat test --tests MorseCodeTest    # windows
-```
-
----------
-
-## Copyrights of the postal code data
-
-The postal code data used in this project [postcode_map_light.json](./data/postcode_map_light.json) is borrowed from the <https://github.com/theikkila/postinumerot> project's [postcode_map_light.json](https://github.com/theikkila/postinumerot/blob/master/postcode_map_light.json) file dated 7.6.2023.
-
-The copyright of the data belongs to Posti and it is used in accordance with [Posti's terms of use](https://www.posti.fi/fi/asiakastuki/postinumerotiedostot). If you make copies of this material, ensure compliance with [the terms of use](https://www.posti.fi/fi/asiakastuki/postinumerotiedostot).
-
-## Programming MOOC
-
-The methods in the `MapExperts` class are heavily influenced by the Python exercises from the University of Helsinki's Programming Basics MOOC course at https://ohjelmointi-23.mooc.fi/osa-5. The Programming MOOC is licensed under the CC BY-NC-SA 4.0 license.
 
 ## License and authors
 
-This exercise is made by Teemu Havulinna and translated to English by Kalle Ilves and it is licensed under a [Creative Commons BY-NC-SA license](https://creativecommons.org/licenses/by-nc-sa/4.0/).
+This exercise was developed by Teemu Havulinna and Jukka Juslin, and it is licensed under the [Creative Commons BY-NC-SA license](https://creativecommons.org/licenses/by-nc-sa/4.0/). ChatGPT 3.5 and GitHub Copilot were used in creating the assignment, the source code and the tests.
 
-ChatGPT 3.5 language model and GitHub copilot AI assistant has been used to implement the exercise.
+**Postal code data.** The data [postcode_map_light.json](./data/postcode_map_light.json) was borrowed from the file [postcode_map_light.json](https://github.com/theikkila/postinumerot/blob/master/postcode_map_light.json) of the project https://github.com/theikkila/postinumerot on 7.6.2023. The copyright of the data belongs to Posti, and it is used according to [Posti's terms of use](https://www.posti.fi/fi/asiakastuki/postinumerotiedostot). If you make copies of the data, make sure to follow the terms of use.
+
+**Ohjelmoinnin MOOC.** The methods of the `MapExperts` class are strongly inspired by the Python exercises of the University of Helsinki's Ohjelmoinnin perusteet MOOC at https://ohjelmointi-23.mooc.fi/osa-5. Ohjelmoinnin MOOC is licensed under CC BY-NC-SA 4.0:
+
+> *Kurssimateriaalin ja tehtävien tekijät ovat Erkki Kaila, Antti Laaksonen ja Matti Luukkainen. Muutama kurssin tehtävistä on Arto Hellaksen (né Vihavainen) käsialaa.*
+>
+> *Kurssin materiaali on lisensoitu [Creative Commons BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.fi) -lisenssillä, joten voit käyttää ja levittää sitä vapaasti, kunhan alkuperäisten tekijöiden nimiä ei poisteta. Jos teet muutoksia materiaaliin ja haluat levittää muunneltua versiota, se täytyy lisensoida samalla lisenssillä. Materiaalien käyttö kaupalliseen tarkoitukseen on ilman erillistä lupaa kielletty.*

@@ -1,7 +1,9 @@
-> [!NOTE]  
+> [!NOTE]
 > The English translation for this exercise can be found in [this file](./readme.en.md).
 
 # Map-harjoitukset
+
+![Map-tietorakenne: avaimet ja niihin liitetyt arvot, esimerkkinä postinumerot ja toimipaikat](img/chapters/map.svg)
 
 Tämän harjoitustehtäväpaketin myötä opit hyödyntämään Map-tietorakennetta omissa sovelluksissasi. Harjoitusten tueksi suosittelemme lukemaan Oraclen [dev.java](https://dev.java/)-tutoriaalista sivut [Using Maps to Store Key Value Pairs](https://dev.java/learn/api/collections-framework/maps/) sekä [Managing the Content of a Map](https://dev.java/learn/api/collections-framework/working-with-keys-and-values/).
 
@@ -11,66 +13,64 @@ Tämän harjoitustehtäväpaketin myötä opit hyödyntämään Map-tietorakenne
 >
 > Using Maps to Store Key Value Pairs. Oracle. https://dev.java/learn/api/collections-framework/maps/
 
-Tehtävä koostuu useammasta osasta, jotka arvioidaan erikseen hyödyntäen valmiiksi kirjoitettuja testejä.
-
-
 ## Tehtävän aloittaminen
 
-Forkkaa ensin tämä repositorio omaan GitHub-repositorioosi GitHubin **Fork**-painikkeella. Harjoitus tehdään omassa forkissasi, joten kloonaa vasta sitten oma forkkisi omalle koneellesi (osoitteessa on oma GitHub-käyttäjätunnuksesi):
+Forkkaa ensin tämä repositorio omaan GitHub-repositorioosi GitHubin **Fork**-painikkeella ja kloonaa vasta sitten oma forkkisi koneellesi:
 
 ```sh
-git clone https://github.com/<oma-github-tunnuksesi>/<repositorion-nimi>.git
+git clone https://github.com/<oma-github-tunnuksesi>/3-map-exercises.git
 ```
 
-Kloonattuasi projektin omalle koneellesi, avaa se koodieditorissasi.
+Avaa kloonattu projekti koodieditorissasi.
 
+## Testaaminen
 
-## Vastausten lähettäminen
-
-Tämän tehtävän ratkaisuja ei arvioi mikään GitHub Actions -tehtävävirta (YAML-workflow), eikä `git push` käynnistä arviointia. Arvioinnin tekee kurssijärjestelmä: lähetä ratkaisusi tehtävän sivulla kurssijärjestelmässä, jolloin koodisi käännetään ja sille ajetaan tehtävän JUnit-testit.
-
-Pushaa lopuksi kaikki julkiseen GitHub-repositorioosi ja paina tehtävän sivulla **Lähetä tarkistettavaksi** -nappia. Kurssijärjestelmän botti käy silloin hakemassa koodisi repositoriostasi ja tarkistaa sen samoilla testeillä.
-
-💡 *Voit lähettää ratkaisusi niin monta kertaa kuin on tarpeen luvun määräaikaan asti. Voimaan jää paras saamasi tulos.*
-
-
-## Tehtävä 1: [MapBasics.java](./src/main/java/part01/MapBasics.java) *(perusteet, 40 %)*
-
-Tässä tehtävässä harjoittelemme uuden `Map`-olion luontia sekä tyypillisimpiä operaatioita tiedon lisäämiseksi, hakemiseksi, muuttamiseksi ja poistamiseksi.
-
-Tehtävässä koodattava Java-luokka [MapBasics](./src/main/java/part01/MapBasics.java) koostuu valmiista metodeista, joiden javadoc-kommentit kertovat, miten metodin tulisi toimia. **Sinun tehtäväsi on lukea kommentit ja toteuttaa metodin sisältö vastaamaan metodin nimeä sekä kuvausta.**
-
-Voit testata koodiasi esimerkiksi oman `main`-metodin avulla, tai voit hyödyntää tehtävän valmiita JUnit-yksikkötestejä, jotka löytyvät [MapBasicsTest](./src/test/java/part01/MapBasicsTest.java)-luokasta. Voit suorittaa testit koodieditorisi testaustyökalulla ([VS Code](https://code.visualstudio.com/docs/java/java-testing), [Eclipse](https://www.vogella.com/tutorials/JUnitEclipse/article.html)) tai [Gradle-automaatiotyökalulla](https://docs.gradle.org/current/userguide/java_testing.html):
+Tehtävän osille on valmiit [JUnit](https://junit.org/)-yksikkötestit hakemistossa [src/test/java](./src/test/java/). Kunkin osan kohdalla kerrotaan, millä testiluokalla se arvioidaan. Voit ajaa testit koodieditorisi testaustyökalulla ([VS Code](https://code.visualstudio.com/docs/java/java-testing), [Eclipse](https://www.vogella.com/tutorials/JUnitEclipse/article.html)) tai [Gradlella](https://docs.gradle.org/current/userguide/java_testing.html), esimerkiksi:
 
 ```
 ./gradlew test --tests MapBasicsTest        # unix
 .\gradlew.bat test --tests MapBasicsTest    # windows
 ```
 
-💡 *Sinun ei tarvitse perehtyä varsinaisen testin tekniseen toteutukseen. Tässä vaiheessa riittää, että suoritat testit ja tutustut niiden mahdollisesti tuottamiin virheilmoituksiin.*
+Lisää komennon loppuun `--info`, jos haluat tarkemmat tiedot epäonnistuneista testeistä. Testien tekniseen toteutukseen ei tarvitse perehtyä, ja voit kokeilla ratkaisuasi myös omalla `main`-metodilla. Saat kirjoittaa omia testejä lisää, mutta älä muuta tai poista valmiita testejä.
 
-💡 *Jos testit eivät mene läpi, kokeile suorittaa komento uudestaan siten, että lisäät loppuun argumentin `--info`. Näin saat tarkemman tiedon siitä, mikä testissä meni pieleen. Vaihtoehtoisesti voit suorittaa testit koodieditorisi testauspainikkeilla.*
+Älä muuta valmiiden luokkien, metodien ja konstruktorien nimiä, parametreja tai paluuarvojen tyyppejä, sillä silloin testit eivät käänny. Saat tiedoston alkuperäisen version takaisin komennolla `git restore <tiedoston polku>` tai kurssijärjestelmän **Palauta lähtökoodi** -toiminnolla.
 
-🚀 *Huomaa, että monet tämän luokan metodit eivät ole riippuvaisia käytettävän Map-tietorakenteen tyypistä. Esimerkiksi `countEntries`-metodi voisi toimia yhtä hyvin `<String, String>`- kuin `<String, Integer>`-tyyppisten avainten ja arvojen kanssa. Oikeassa ohjelmassa käyttäisit todennäköisesti geneerisiä tyyppejä, kuten `Map<K, V>`. Tässä tehtävässä ei tarvitse erikseen perehtyä geneerisiin tyyppeihin, mutta voit halutessasi tutustua aiheeseen itsenäisesti ja toteuttaa metodit geneerisinä. Katso lisätietoja tutoriaalista: https://dev.java/learn/generics/.*
+## Palauttaminen ja pisteet
 
+Jokaisella tehtävän osalla on kurssijärjestelmässä (https://jtjuslin.kapsi.fi/java) oma sivunsa, jonka koodikentissä on osan koodipohja. Kopioi ratkaisusi koodikenttiin tai kirjoita se suoraan niihin. **Testaa ilman palautusta** ajaa osan testit tallentamatta pisteitä, ja **Lähetä** palauttaa ratkaisun. Jokainen testiluokka hyväksytään vain, jos sen kaikki testit menevät läpi, ja pisteet jaetaan hyväksyttyjen testiluokkien mukaan.
 
-## Tehtävä 2: [MapExperts.java](./src/main/java/part02/MapExperts.java) *(soveltaminen, 30 %)*
+**Pisteet kahdessa vaiheessa**
 
-Tässä tehtävässä jatkamme `Map`-operaatioita soveltavien tehtävien muodossa. Tehtävät ovat luonteeltaan haastavampia ja edellyttävät myös laajempaa ongelmanratkaisua kuin yksittäisen metodin käyttöä.
+1. Kun ratkaisusi menee läpi kurssijärjestelmässä, saat osasta **puolet pisteistä**.
+2. Pushaa lopuksi kaikki julkiseen GitHub-repositorioosi. Paina tämän jälkeen osan sivulla **Lähetä tarkistettavaksi** -nappia. Kun testit menevät läpi, saat osasta **täydet pisteet**. Repositorio saa jäädä julkiseksi.
 
-Kuten edellisessä tehtävässä, myös [MapExperts.java](./src/main/java/part02/MapExperts.java) koostuu valmiista metodeista, joiden javadoc-kommentit kertovat, miten metodin tulisi toimia. **Sinun tehtäväsi on lukea kommentit ja toteuttaa metodin sisältö vastaamaan metodin nimeä sekä kuvausta.**
-
-Kuten edellisessä tehtävässä, voit testata koodiasi esimerkiksi oman `main`-metodin tai valmiiden JUnit-yksikkötestien avulla. Testit löytyvät [MapExpertsTest](./src/test/java/part02/MapExpertsTest.java)-luokasta. Voit suorittaa testit koodieditorisi testaustyökalulla ([VS Code](https://code.visualstudio.com/docs/java/java-testing), [Eclipse](https://www.vogella.com/tutorials/JUnitEclipse/article.html)) tai [Gradle-automaatiotyökalulla](https://docs.gradle.org/current/userguide/java_testing.html):
-
-```
-./gradlew test --tests MapExpertsTest        # unix
-.\gradlew.bat test --tests MapExpertsTest    # windows
-```
+GitHubissa ei ole arvioivaa YAML-tehtävävirtaa (GitHub Actions -workflowta), eikä `git push` käynnistä arviointia. Kun painat **Lähetä tarkistettavaksi**, kurssijärjestelmän botti hakee koodisi repositoriostasi ja tarkistaa sen samoilla testeillä. Molemmat vaiheet pitää tehdä ennen luvun määräaikaa. Voit lähettää ratkaisusi niin monta kertaa kuin tarvitset, ja voimaan jää paras tulos.
 
 
-## Tehtävä 3: [PostalCodesMain.java](./src/main/java/part03/PostalCodesMain.java) *(soveltaminen, 15 % + 15 %)*
+## Tehtävä 1: MapBasics *(perusteet, 40 %)*
 
-Tietokoneohjelmat käyttävät usein JSON-tiedostomuotoa rakenteellisen datan käsittelyssä. [JSON (JavaScript Object Notation)](https://www.json.org/) on kevyt ja yleinen tapa tallentaa ja siirtää tietoa ohjelmien välillä. JSON-muotoista dataa voidaan käyttää monissa erilaisissa sovelluksissa, kuten verkkopalvelimissa, mobiilisovelluksissa ja tietokantojen kanssa työskennellessä. JSON-muotoinen data voi näyttää esim. seuraavalta:
+Tässä tehtävässä harjoittelet uuden `Map`-olion luontia sekä tyypillisimpiä operaatioita tiedon lisäämiseksi, hakemiseksi, muuttamiseksi ja poistamiseksi.
+
+[MapBasics](./src/main/java/part01/MapBasics.java)-luokan metodien javadoc-kommentit kertovat, miten kunkin metodin tulee toimia. **Lue kommentit ja toteuta metodien sisältö vastaamaan metodin nimeä ja kuvausta.**
+
+Arvioinnissa ajetaan testiluokka [MapBasicsTest](./src/test/java/part01/MapBasicsTest.java).
+
+🚀 *Monet tämän luokan metodeista eivät riipu mapin avainten ja arvojen tyypeistä. Esimerkiksi `countEntries` toimisi yhtä hyvin `<String, String>`- kuin `<String, Integer>`-tyyppisen mapin kanssa. Oikeassa ohjelmassa käyttäisit todennäköisesti geneerisiä tyyppejä, kuten `Map<K, V>`. Geneerisiin tyyppeihin ei tarvitse vielä perehtyä, mutta voit halutessasi toteuttaa metodit geneerisinä: https://dev.java/learn/generics/.*
+
+
+## Tehtävä 2: MapExperts *(soveltaminen, 30 %)*
+
+Tässä tehtävässä jatketaan `Map`-operaatioita soveltavien tehtävien muodossa. Ne ovat haastavampia ja edellyttävät laajempaa ongelmanratkaisua kuin yksittäisen metodin käyttöä.
+
+Toteuta [MapExperts](./src/main/java/part02/MapExperts.java)-luokan metodit niiden javadoc-kommenttien mukaisesti: kirjainten esiintymien laskeminen, mapin kääntäminen ja [Course](./src/main/java/part02/Course.java)-olioiden listan muuttaminen mapiksi. `Course` on valmis record-luokka.
+
+Arvioinnissa ajetaan testiluokka [MapExpertsTest](./src/test/java/part02/MapExpertsTest.java).
+
+
+## Tehtävä 3: PostalCodesMain *(soveltaminen, 15 % + 15 %)*
+
+[JSON (JavaScript Object Notation)](https://www.json.org/) on kevyt ja yleinen tapa tallentaa ja siirtää rakenteellista tietoa ohjelmien välillä. JSON-muotoinen data voi näyttää esimerkiksi seuraavalta:
 
 ```json
 {
@@ -82,119 +82,79 @@ Tietokoneohjelmat käyttävät usein JSON-tiedostomuotoa rakenteellisen datan k�
 }
 ```
 
-Java-ohjelmassa Map-tietorakenne soveltuu erinomaisesti yllä esitettyjen avain-arvo-parien käsittelemiseen. Tässä tehtävässä keskitymme postinumeroaineiston käsittelyyn, joka on tallennettu [JSON-muotoiseen tiedostoon nimeltä *postcode_map_light.json*](./data/postcode_map_light.json).
+Map-tietorakenne soveltuu erinomaisesti tällaisten avain-arvo-parien käsittelyyn. Tässä tehtävässä käsitellään postinumeroaineistoa, joka on tallennettu JSON-tiedostoon [postcode_map_light.json](./data/postcode_map_light.json). Tiedoston lukeminen on toteutettu valmiiksi [PostalCodesReader](./src/main/java/part03/PostalCodesReader.java)-luokassa, joka käyttää Googlen [GSON-kirjastoa](https://github.com/google/gson). GSONiin ei tarvitse perehtyä.
 
-💡 *JSON-tiedoston lukemiseen Java-ohjelmassa käytämme tässä tehtävässä Googlen julkaisemaa [GSON-kirjastoa](https://github.com/google/gson). GSON mahdollistaa JSON-datan muuntamisen Java-olioiksi ja päinvastoin. JSON-tiedoston käsittely on toteutettu valmiiksi [PostalCodesReader](./src/main/java/part03/PostalCodesReader.java)-luokassa. Sinun ei tarvitse perehtyä GSON:in yksityiskohtiin tai käyttää sitä itse.*
-
-🚀 *GSON ei ole osa Javan standardikirjastoa, vaan se on lisätty tähän projektiin Gradle-työkalun avulla. Tutki [`build.gradle`](./build.gradle)-tiedostoa, löydätkö miten ja mihin GSON on määritetty?*
-
+🚀 *GSON ei ole osa Javan standardikirjastoa, vaan se on lisätty projektiin Gradlen avulla. Löydätkö [build.gradle](./build.gradle)-tiedostosta, miten ja mihin GSON on määritetty?*
 
 ### Käyttöliittymä
 
-Edellisistä tehtävistä poiketen tässä tehtävässä saat toteuttaa ratkaisun parhaaksi katsomallasi tavalla ja luoda parhaaksi katsomasi luokat ja metodit. Ohjelmasi on kuitenkin toimittava siten, että se käynnistyy `PostalCodesMain`-luokan main-metodista ja kysyy käyttäjältä ainoastaan yhden kysymyksen. Tulos täytyy myös tulostaa tehtävänannossa esitetyssä muodossa.
-
-Toteuta siis [PostalCodesMain](./src/main/java/part03/PostalCodesMain.java)-luokkaan logiikka, joka hyödyntää [PostalCodesReader](./src/main/java/part03/PostalCodesReader.java)-luokan `readPostalCodes`-metodia. Ohjelmasi tulee tulostaa tilanteesta riippuen joko käyttäjän syöttämää postinumeroa vastaavan postitoimipaikan nimen tai nimeä vastaavat postinumerot.
+Saat toteuttaa ratkaisun parhaaksi katsomallasi tavalla ja luoda tarvitsemasi luokat ja metodit. Ohjelman on kuitenkin käynnistyttävä [PostalCodesMain](./src/main/java/part03/PostalCodesMain.java)-luokan `main`-metodista, kysyttävä käyttäjältä vain yksi syöte, tulostettava vastaus alla esitetyssä muodossa ja lopetettava. Hae postinumerot `PostalCodesReader`-luokan `readPostalCodes`-metodilla.
 
 **Postinumero (15 %)**
 
-Käyttäjä saattaa siis syöttää numeron, jolloin ohjelma etsii ja tulostaa sitä vastaavan toimipaikan nimen:
+Jos käyttäjä syöttää postinumeron, ohjelma tulostaa sitä vastaavan postitoimipaikan:
 
 ```
 Input postal code or district (e.g., 00100 or Helsinki): 00100
 
 Post office: HELSINKI
-
-[ ohjelman suoritus päättyy ]
 ```
 
-Yllä olevassa esimerkissä käyttäjä antoi syötteen `00100` ja ohjelma tulosti nimen `HELSINKI`. Mikäli postinumeroa ei löydy aineistosta, tulosta esimerkiksi teksti "Post office not found."
-
-💡 *Huomaa, että automaattisen arvioinnin vuoksi ohjelman tulee kysyä vain yksi syöte, tulostaa vastaus ja lopettaa.*
+Jos postinumeroa ei löydy, tulosta esimerkiksi "Post office not found."
 
 **Toimipaikan nimi (15 %)**
 
-Jos käyttäjä syöttää toimipaikan nimen, ohjelman tulee tulostaa kaikki postinumerot, jotka kuuluvat kyseiseen postitoimipaikkaan:
+Jos käyttäjä syöttää toimipaikan nimen, ohjelma tulostaa kaikki sen postinumerot:
 
 ```
 Input postal code or district (e.g., 00100 or Helsinki): Porvoo
 
 Postal codes: 06100, 06101, 06150, 06151, 06200, 06400, 06401, 06450, 06500
-
-[ ohjelman suoritus päättyy ]
 ```
 
-Tässä esimerkissä käyttäjä syötti tekstin `Porvoo` ja ohjelma tulosti Porvoon postinumerot. Mikäli annetulle nimelle ei löydy lainkaan postinumeroita, tulosta esimerkiksi teksti "Postal codes not found." Ohjelmasi tulee löytää postinumerot riippumatta syötetyn nimen kirjainkoosta.
+Nimen kirjainkoolla ei ole väliä, eikä osittaisia osumia näytetä. Postinumeroiden tulee olla **kasvavassa järjestyksessä pilkulla ja välilyönnillä eroteltuina**, joten kerää ne ensin esimerkiksi listalle ja [järjestä](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Collections.html#sort(java.util.List)) se ennen tulostamista. Jos nimelle ei löydy postinumeroita, tulosta esimerkiksi "Postal codes not found."
 
-Tulosteessa **postinumeroiden tulee olla kasvavassa järjestyksessä pilkuilla eroteltuna**, joten kerää postinumerot ensin esimerkiksi listalle, jonka [järjestät](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Collections.html#sort(java.util.List)) ennen tulostamista.
+### Ohjelman suorittaminen ja arviointi
 
-
-### Ohjelman suorittaminen
-
-Voit suorittaa [PostalCodesMain](./src/main/java/part03/PostalCodesMain.java)-pääohjelman joko koodieditorisi käyttöliittymän Run-painikkeella tai Gradle-työkalun avulla komentoriviltä:
+Voit suorittaa ohjelman koodieditorisi Run-painikkeella tai Gradlella:
 
 ```
 ./gradlew --quiet --console plain run         # unix
 .\gradlew.bat --quiet --console plain run     # windows
-
-# -q, --quiet         Log errors only.
-# --console [plain]   Specifies which type of console output to generate.
-#                     Values are 'plain', 'auto' (default), 'rich' or 'verbose'.
 ```
 
-💡 *Ensimmäisellä suorituskerralla suoritus saattaa olla hyvin hidas, mutta [suoritus nopeutuu seuraavilla kerroilla Gradlen välimuistin ansiosta](https://docs.gradle.org/current/userguide/build_cache.html). Voit myös vaihtoehtoisesti suorittaa ohjelmasi käyttämäsi koodieditorin "run"-painikkeella.*
+Ensimmäinen suorituskerta voi olla hidas, mutta [Gradlen välimuisti nopeuttaa seuraavia](https://docs.gradle.org/current/userguide/build_cache.html). Gradle tietää käynnistää `PostalCodesMain`-luokan, koska se on määritetty pääohjelmaksi [build.gradle](./build.gradle)-tiedostossa.
 
-🚀 *Gradle osaa suorittaa run-komennolla main-metodin oikeasta Java-luokasta, koska `PostalCodesMain` on määritetty [`build.gradle`](./build.gradle)-tiedostossa pääohjelmaksi.*
+Kurssijärjestelmä ajaa ohjelmasi eri syötteillä kahdella testiluokalla. Ne eivät ole tässä repositoriossa, joten kokeile ohjelmaa itse yllä olevilla esimerkeillä. Valmis [PostalCodesReaderTest](./src/test/java/part03/PostalCodesReaderTest.java) testaa vain annettua tiedostonlukijaa.
+
+* `PostalCodeLookupTest` *(postinumero, 15 %)*: syötteillä esimerkiksi `19230`, `00100`, `99999` ja `71820` tulosteessa pitää olla vastaava toimipaikka (ONKINIEMI, HELSINKI, KORVATUNTURI ja PÖLJÄ). Osittainen postinumero, kuten `001`, ei saa tuottaa tulosta.
+* `PostalDistrictLookupTest` *(toimipaikan nimi, 15 %)*: syötteillä esimerkiksi `tammisaari`, `TAMMISAARI`, `Porvoo` ja `kauniainen` tulosteessa pitää olla toimipaikan postinumerot kasvavassa järjestyksessä. Osittainen nimi, kuten `Porv`, ei saa tuottaa tulosta.
+
+💡 *Testi poimii tulosteesta kaikki viisinumeroiset luvut, joten älä tulosta muita viisinumeroisia lukuja kuin löydetyt postinumerot. Syötekysymyksen esimerkki "(e.g., 00100 or Helsinki)" jätetään huomiotta.*
 
 
-### Tehtävän testaaminen
+## Bonustehtävä 4: MorseCode *(soveltaminen, 0 %)*
 
-Nämä postinumerotehtävät testataan käyttöliittymän kautta, joten niille ei ole aikaisemmista tehtävistä poiketen valmiita yksikkötestejä. Sinun on siis testattava ratkaisusi toimivuus itse suorittamalla ohjelman `main`-metodia ja tarkastamalla sen antamat tulokset. Valmis [PostalCodesReaderTest](./src/test/java/part03/PostalCodesReaderTest.java)-luokka tarkastaa vain, että [valmiiksi annettu koodi postinumeroiden lukemiseksi tiedostoista](./src/main/java/part03/PostalCodesReader.java) toimii kuten pitääkin, mutta se ei testaa toteuttamaasi pääohjelmaa.
-
-
-## Bonustehtävä 4: [MorseCode.java](./src/main/java/part04/MorseCode.java) *(soveltaminen, 0 %)*
-
-Tämä on bonustehtävä, joka ei sisälly tehtävän arviointiin. Voit halutessasi toteuttaa [MorseCode-luokan](./src/main/java/part04/MorseCode.java) ja siihen liittyvän [MorseApp-luokan](./src/main/java/part04/MorseApp.java), tai voit jättää tämän tehtävän väliin.
-
-MorseCode-luokkaan on toteutettava kaksi metodia: `morseToText` ja `textToMorse`. Nämä metodit muuntavat merkkijonoja morsekoodista "normaaliksi" tekstiksi ja päinvastoin:
+Tämä vapaaehtoinen bonustehtävä ei vaikuta pisteisiin. Toteuta [MorseCode](./src/main/java/part04/MorseCode.java)-luokan metodit `textToMorse` ja `morseToText`, jotka muuntavat tekstiä morsekoodiksi ja päinvastoin:
 
 ```
 hello world
 .... . .-.. .-.. ---   .-- --- .-. .-.. -..
 ```
 
-Lisätietoja morsekoodista löytyy esimerkiksi Wikipediasta: [https://en.wikipedia.org/wiki/Morse_code](https://en.wikipedia.org/wiki/Morse_code).
+Lisätietoja morsekoodista löytyy esimerkiksi Wikipediasta: https://en.wikipedia.org/wiki/Morse_code. [MorseApp](./src/main/java/part04/MorseApp.java)-luokkaa ei tarkisteta.
 
-MorseCode-luokalle on valmiit testit, jotka löytyvät [MorseCodeTest](./src/test/java/part04/MorseCodeTest.java)-luokasta. Voit suorittaa testit koodieditorisi testaustyökalulla ([VS Code](https://code.visualstudio.com/docs/java/java-testing), [Eclipse](https://www.vogella.com/tutorials/JUnitEclipse/article.html)) tai [Gradle-automaatiotyökalulla](https://docs.gradle.org/current/userguide/java_testing.html):
-
-```
-./gradlew test --tests MorseCodeTest        # unix
-.\gradlew.bat test --tests MorseCodeTest    # windows
-```
-
----------
-
-## Postinumeroaineiston tekijänoikeudet
-
-Tässä projektissa hyödynnettävä postinumeroaineisto [postcode_map_light.json](./data/postcode_map_light.json) on lainattu [https://github.com/theikkila/postinumerot](https://github.com/theikkila/postinumerot)-projektin [postcode_map_light.json](https://github.com/theikkila/postinumerot/blob/master/postcode_map_light.json)-tiedostosta 7.6.2023.
-
-Datan tekijänoikeudet kuuluvat Postille ja niitä käytetään [Postin käyttöehtojen mukaisesti](https://www.posti.fi/fi/asiakastuki/postinumerotiedostot). Mikäli teet kopioita tästä aineistosta, huolehdi [käyttöehtojen](https://www.posti.fi/fi/asiakastuki/postinumerotiedostot) noudattamisesta.
+Tehtävää kokeillaan testiluokalla [MorseCodeTest](./src/test/java/part04/MorseCodeTest.java).
 
 
-## Ohjelmoinnin MOOC
+## Lisenssi ja tekijät
 
-`MapExperts`-luokan metodeissa on otettu vahvasti vaikutteita Helsingin yliopiston Ohjelmoinnin perusteet -MOOC-kurssin Python-kielisistä tehtävistä osoitteessa https://ohjelmointi-23.mooc.fi/osa-5. Ohjelmoinnin MOOC on lisensoitu CC BY-NC-SA 4.0 -lisenssillä:
+Tämän tehtävän ovat kehittäneet Teemu Havulinna ja Jukka Juslin, ja se on lisensoitu [Creative Commons BY-NC-SA -lisenssillä](https://creativecommons.org/licenses/by-nc-sa/4.0/). Tehtävänannon, lähdekoodien ja testien toteutuksessa on hyödynnetty ChatGPT 3.5 -kielimallia sekä GitHub Copilot -tekoälyavustinta.
+
+**Postinumeroaineisto.** Aineisto [postcode_map_light.json](./data/postcode_map_light.json) on lainattu projektin https://github.com/theikkila/postinumerot tiedostosta [postcode_map_light.json](https://github.com/theikkila/postinumerot/blob/master/postcode_map_light.json) 7.6.2023. Datan tekijänoikeudet kuuluvat Postille, ja sitä käytetään [Postin käyttöehtojen](https://www.posti.fi/fi/asiakastuki/postinumerotiedostot) mukaisesti. Jos teet kopioita aineistosta, huolehdi käyttöehtojen noudattamisesta.
+
+**Ohjelmoinnin MOOC.** `MapExperts`-luokan metodeissa on otettu vahvasti vaikutteita Helsingin yliopiston Ohjelmoinnin perusteet -MOOC-kurssin Python-kielisistä tehtävistä osoitteessa https://ohjelmointi-23.mooc.fi/osa-5. Ohjelmoinnin MOOC on lisensoitu CC BY-NC-SA 4.0 -lisenssillä:
 
 > *Kurssimateriaalin ja tehtävien tekijät ovat Erkki Kaila, Antti Laaksonen ja Matti Luukkainen. Muutama kurssin tehtävistä on Arto Hellaksen (né Vihavainen) käsialaa.*
 >
 > *Kurssin materiaali on lisensoitu [Creative Commons BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.fi) -lisenssillä, joten voit käyttää ja levittää sitä vapaasti, kunhan alkuperäisten tekijöiden nimiä ei poisteta. Jos teet muutoksia materiaaliin ja haluat levittää muunneltua versiota, se täytyy lisensoida samalla lisenssillä. Materiaalien käyttö kaupalliseen tarkoitukseen on ilman erillistä lupaa kielletty.*
-
-
-## Tämän tehtävän tekijänoikeudet
-
-Tämän tehtävän on kehittänyt Teemu Havulinna ja se on lisensoitu [Creative Commons BY-NC-SA](https://creativecommons.org/licenses/by-nc-sa/4.0/) -lisenssillä. Tehtävänannon, tehtäväpohjien ja automaattisten testien luonnissa on hyödynnetty ChatGPT 3.5 -kielimallia sekä GitHub Copilot -tekoälytyökalua.
-
-## Ratkaisun tallentaminen
-
-Forkkaa tämä tehtäväpohja omaan GitHub-repositorioosi ja tallenna ratkaisusi omaan forkkiisi. Repositorio saa olla julkinen.
-
-Palauta ratkaisusi kurssijärjestelmään tehtävän sivulla.
