@@ -1,5 +1,9 @@
 package part04;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
 /**
  * This is an extra class, which is not included in the grading of the
  * assignment. Feel free to complete this class or skip it entirely. If you
@@ -28,6 +32,50 @@ package part04;
  */
 public class MorseCode {
 
+    private final String codeChart = """
+            A .-
+            B -...
+            C -.-.
+            D -..
+            E .
+            F ..-.
+            G --.
+            H ....
+            I ..
+            J .---
+            K -.-
+            L .-..
+            M --
+            N -.
+            O ---
+            P .--.
+            Q --.-
+            R .-.
+            S ...
+            T -
+            U ..-
+            V ...-
+            W .--
+            X -..-
+            Y -.--
+            Z --..
+            0 -----
+            1 .----
+            2 ..---
+            3 ...--
+            4 ....-
+            5 .....
+            6 -....
+            7 --...
+            8 ---..
+            9 ----.
+            """;
+
+    // KAKSI MAPPIA, JOISSA KUKIN MERKKI PYSTYTAAN KAANTAMAAN
+    // MORSESTA CLEAR TEKSTIKSI JA TOISINPAIN
+    private final Map<String, String> morseToChar = null; //morseToText(codeChart);
+    private final Map<String, String> charToMorse = null; //textToMorse(morseToChar);
+
     /**
      * Translates a string of morse code to text. The morse code is represented as
      * dots (.) and dashes (-). Characters are separated by a single space and words
@@ -40,8 +88,26 @@ public class MorseCode {
      * @return the translated text (in lower case)
      */
     public String morseToText(String morse) {
+        String[] words = morse.split("   ");
+        List<String> translatedWords = new ArrayList<>();
+        for(String w : words) {
+            String[] morseCodes = w.split(" ");
+            String word = "";
+            for (String code : morseCodes) {
+                word += morseToChar.getOrDefault(code, "?");
+            }
+            translatedWords.add(word);
+
+        }
+        return String.join(" ", translatedWords).toLowerCase();
+    }
+
+    public String textToMorse(String text) {
+
         return null;
     }
+
+
 
     /**
      * Translates a string of text to morse code. The morse code is represented as
@@ -57,7 +123,5 @@ public class MorseCode {
      * @param text the text to translate
      * @return the translated morse code as a single string
      */
-    public String textToMorse(String text) {
-        return null;
-    }
+
 }
